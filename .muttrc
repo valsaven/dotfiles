@@ -1,0 +1,124 @@
+#--------------------#
+# Setup index_format #
+#--------------------#
+set date_format="%d %b %y %I:%M%p"
+#   %d - day of month [1,31]; single digits are preceded by 0
+#   %b - locale's abbreviated month name
+#   %y - short year; last 2 digits. For example: 93, 16
+#   %I - hour (12-hour clock) [1,12]; single digits are preceded by 0
+#   %M - minute [00,59]; leading zero is permitted but not required
+#   %p - locale's equivalent of either a.m. or p.m.
+
+set index_format = "%4C %Z %D %-30.30L (%?l?%4l&%4c?) %s"
+# %4C       - index number
+# %Z        - status flags
+# %D        - date and time of the message in the format specified by $date_format converted to the local time zone
+# %-30L.30L - left justify the From: with a max of 30 characters
+# %c        - number of characters in the message
+# %s        - subject line
+
+#-----------#
+# Passwords #
+#-----------#
+set my_user = 'MAIL@gmail.com'
+set my_pass = 'PASSWORD'
+set my_name = 'FName LName'
+
+#---------------#
+# Account Hooks #
+#---------------#
+account-hook . "unset imap_user; unset imap_pass; unset tunnel"  # Unset first!
+account-hook        "imaps://$my_user@imap.gmail.com/" "\
+    set imap_user   = $my_user \
+        imap_pass   = $my_pass"
+
+#---------#
+# Aliases #
+#---------#
+alias NICK FName LName <MAIL@gmail.com>
+
+#-------------------------------------#
+# Folders, mailboxes and folder hooks #
+#-------------------------------------#
+# Setup:
+set folder          = imaps://$my_user@imap.gmail.com/
+mailboxes           = +INBOX =[Gmail]/Drafts =[Gmail]/'Sent Mail' =[Gmail]/Spam =[Gmail]/Trash
+set spoolfile       = +INBOX
+folder-hook         imaps://$my_user@imap.gmail.com/ "\
+    set folder      = imaps://$my_user@imap.gmail.com/ \
+        spoolfile   = +INBOX \
+        postponed   = +[Gmail]/Drafts \
+        trash       = +[Gmail]/Trash \
+        record      = +[Gmail]/'Sent Mail' \
+        from        = '$my_name <$my_user@gmail.com>' \
+        realname    = '$my_name' \
+        smtp_url    = smtps://$my_user@smtp.gmail.com \
+        smtp_pass   = $my_pass"
+
+#--------#
+# Macros #
+#--------#
+# Gmail-style keyboard shortcuts
+bind editor <space> noop
+macro index,pager y  "<save-message>=[Gmail]/All Mail<enter><enter>"   "Archive"
+macro index,pager d  "<save-message>=[Gmail]/Trash<enter><enter>"      "Trash"
+macro index gi       "<change-folder>=INBOX<enter>"                    "Go to inbox"
+macro index ga       "<change-folder>=[Gmail]/All Mail<enter>"         "Go to all mail"
+macro index gs       "<change-folder>=[Gmail]/Starred<enter>"          "Go to starred messages"
+macro index gd       "<change-folder>=[Gmail]/Drafts<enter>"           "Go to drafts"
+macro index gt       "<change-folder>=[Gmail]/Trash<enter>"            "Go to trash"
+
+#-----------------------#
+# Gmail-specific macros #
+#-----------------------#
+# to delete more than 1 message, just mark them with "t" key and then do "d" on them
+macro index d ";s+[Gmail]/Trash<enter><enter>" "Move to Gmail's Trash"
+# delete message, but from pager (opened email)
+macro pager d "s+[Gmail]/Trash<enter><enter>"  "Move to Gmail's Trash"
+# undelete messages
+macro index u ";s+INBOX<enter><enter>"         "Move to Gmail's INBOX"
+macro pager u "s+INBOX<enter><enter>"          "Move to Gmail's INBOX"
+
+#---------------------------------------------------#
+# Local folders for cached headers and certificates #
+#---------------------------------------------------#
+set header_cache     = ~/.mutt/cache/headers
+set message_cachedir = ~/.mutt/cache/bodies
+set certificate_file = ~/.mutt/certificates
+
+#-------------#
+# Render HTML #
+#-------------#
+# Prefer plain text
+alternative_order text/plain text/html
+# Auto convert text/html MIME type to text/plain
+auto_view text/html
+# run viewer defined in mailcap by <return> in attach view
+bind attach <return> view-mailcap
+
+#-------------#
+# Color Theme #
+#-------------#
+source ~/.mutt/zenburn.theme
+
+#-------------------------#
+# Misc. optional settings #
+#-------------------------#
+# Disable pause for displaying certain informational messages
+set sleep_time = 0
+# Use Vim
+set editor = vim
+# Check for mail every minute for current IMAP mailbox every 1 min
+set timeout        = 60
+# Check for new mail in ALL mailboxes every 2 min
+set mail_check     = 120
+# Keep imap connection alive by polling intermittently (time in seconds)
+set imap_keepalive = 300
+# Allow mutt to open new imap connection automatically
+unset imap_passive
+# Sort mail by threads
+set sort = threads
+# ...and sort threads by date
+set sort_aux = last-date-received
+# Don't prompt on exit
+set quit = yes
