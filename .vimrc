@@ -43,6 +43,9 @@ Plug 'sjl/gundo.vim'                           " Visualize your Vim undo tree
 Plug 'tpope/vim-surround'                      " Surround.vim: quoting/parenthesizing made simple
 Plug 'xolox/vim-misc'                          " Miscellaneous auto-load Vim scripts
 Plug 'xolox/vim-session'                       " Extended session management for Vim
+Plug 'guns/vim-clojure-static'                 " Meikel Brandmeyer's excellent Clojure runtime files
+Plug 'flowtype/vim-flow'                       " A vim plugin for Flow
+Plug 'mattn/emmet-vim'                         " emmet for vim
 
 " Color Themes
 Plug 'blueshirts/darcula'              " VIM Darcula Theme
