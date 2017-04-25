@@ -16,9 +16,12 @@ set backspace=indent,eol,start
 " Ленивая перерисовка экрана при выполнении скриптов
 set lz
 
-" Автосохранение и автозагрузка последней сессии
-:let g:session_autosave = 'yes'
-:let g:session_autoload = 'yes'
+" При копировании использовать системный буфер
+set clipboard=unnamedplus
+
+" Отключить автосохранение и автозагрузку последней сессии
+:let g:session_autosave = 'no'
+:let g:session_autoload = 'no'
 
 
 " "Plugins"                Плагины и дополнения
@@ -46,6 +49,7 @@ Plug 'xolox/vim-session'                       " Extended session management for
 Plug 'guns/vim-clojure-static'                 " Meikel Brandmeyer's excellent Clojure runtime files
 Plug 'flowtype/vim-flow'                       " A vim plugin for Flow
 Plug 'mattn/emmet-vim'                         " emmet for vim
+Plug 'wakatime/vim-wakatime'                   " Vim plugin for Wakatime
 
 " Color Themes
 Plug 'blueshirts/darcula'              " VIM Darcula Theme
