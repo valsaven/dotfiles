@@ -50,6 +50,8 @@ Plug 'guns/vim-clojure-static'                 " Meikel Brandmeyer's excellent C
 Plug 'flowtype/vim-flow'                       " A vim plugin for Flow
 Plug 'mattn/emmet-vim'                         " emmet for vim
 Plug 'wakatime/vim-wakatime'                   " Vim plugin for Wakatime
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'mileszs/ack.vim'                         " Vim plugin for the Perl module / CLI script 'ack'
 
 " Color Themes
 Plug 'blueshirts/darcula'              " VIM Darcula Theme
@@ -99,6 +101,10 @@ set guifont=Consolas:h12:cRUSSIAN:qDRAFT
 
 " Автоматическая подсветка синтаксиса
 syntax enable
+
+" Terminator pre-settings
+set t_Co=256
+set background=dark
 
 " Установка темы
 colorscheme predawn
@@ -154,6 +160,9 @@ set incsearch
 
 " Использовать регистронезависимый поиск
 set ignorecase
+
+" ag integration
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 
 " "Menu"                Горячие клавиши и меню
