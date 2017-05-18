@@ -52,6 +52,7 @@ Plug 'mattn/emmet-vim'                         " emmet for vim
 Plug 'wakatime/vim-wakatime'                   " Vim plugin for Wakatime
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'mileszs/ack.vim'                         " Vim plugin for the Perl module / CLI script 'ack'
+Plug 'joshdick/onedark.vim'
 
 " Color Themes
 Plug 'blueshirts/darcula'              " VIM Darcula Theme
@@ -107,7 +108,9 @@ set t_Co=256
 set background=dark
 
 " Установка темы
-colorscheme predawn
+" colorscheme predawn
+" colorscheme darcula
+colorscheme onedark
 
 " Enables HTML/CSS syntax highlighting in your JavaScript file.
 let g:javascript_enable_domhtmlcss = 1
