@@ -54,6 +54,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'mileszs/ack.vim'                         " Vim plugin for the Perl module / CLI script 'ack'
 Plug 'joshdick/onedark.vim'
 Plug 'fatih/vim-go'                            " Go development plugin for Vim
+Plug 'ap/vim-css-color'                        " Highlight colors in css files
 
 " Color Themes
 Plug 'blueshirts/darcula'              " VIM Darcula Theme
