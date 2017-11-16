@@ -19,11 +19,6 @@ set lz
 " При копировании использовать системный буфер
 set clipboard=unnamedplus
 
-" Отключить автосохранение и автозагрузку последней сессии
-:let g:session_autosave = 'no'
-:let g:session_autoload = 'no'
-
-
 " "Plugins"                Плагины и дополнения
 " ===================================================================
 filetype off  " Required
@@ -45,20 +40,18 @@ Plug 'sheerun/vim-polyglot'                    " A solid language pack for Vim
 Plug 'sjl/gundo.vim'                           " Visualize your Vim undo tree
 Plug 'tpope/vim-surround'                      " Surround.vim: quoting/parenthesizing made simple
 Plug 'xolox/vim-misc'                          " Miscellaneous auto-load Vim scripts
-Plug 'xolox/vim-session'                       " Extended session management for Vim
-Plug 'guns/vim-clojure-static'                 " Meikel Brandmeyer's excellent Clojure runtime files
 Plug 'flowtype/vim-flow'                       " A vim plugin for Flow
 Plug 'mattn/emmet-vim'                         " emmet for vim
 Plug 'wakatime/vim-wakatime'                   " Vim plugin for Wakatime
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'mileszs/ack.vim'                         " Vim plugin for the Perl module / CLI script 'ack'
-Plug 'joshdick/onedark.vim'
 Plug 'fatih/vim-go'                            " Go development plugin for Vim
 Plug 'ap/vim-css-color'                        " Highlight colors in css files
 
 " Color Themes
 Plug 'blueshirts/darcula'              " VIM Darcula Theme
 Plug 'juanedi/predawn.vim'             " Predawn theme for Vim
+Plug 'joshdick/onedark.vim'            " A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme
 
 call plug#end()
 
@@ -94,7 +87,7 @@ autocmd WinEnter * call NERDTreeQuit()
 map <leader>r :NERDTreeFind<cr>
 
 " Default JavaScript libraries
-let g:used_javascript_libs = 'jquery,lodash,angularjs,angularuirouter'
+let g:used_javascript_libs = 'vue,jquery'
 
 
 " "View"                Вид
@@ -109,9 +102,7 @@ syntax enable
 set t_Co=256
 set background=dark
 
-" Установка темы
-" colorscheme predawn
-" colorscheme darcula
+" Set color scheme
 colorscheme onedark
 
 " Enables HTML/CSS syntax highlighting in your JavaScript file.
@@ -137,6 +128,9 @@ set showcmd
 " Показывать совпадающую скобку
 set showmatch
 
+" Подсвечивать всё, что больше 100 символов
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%101v.\+/
 
 " "Indent"                Отступы и табуляция
 " ===================================================================
@@ -166,9 +160,6 @@ set incsearch
 " Использовать регистронезависимый поиск
 set ignorecase
 
-" ag integration
-let g:ackprg = 'ag --nogroup --nocolor --column'
-
 
 " "Menu"                Горячие клавиши и меню
 " ===================================================================
@@ -178,7 +169,6 @@ map <F2> <Esc>:w<CR>
 
 " F3 - Включение и отключение NERD Tree
 map <F3> :NERDTreeToggle<CR>
-nnoremap <F7> :GundoToggle<CR>
 
 " F5 - Переключение вкладок справа-налево
 imap <F5> <Esc> :bprev <CR>i
@@ -188,18 +178,10 @@ map <F5> :bprev <CR>
 imap <F6> <Esc> :bnext <CR>i
 map <F6> :bnext <CR>
 
-" F9 - Пользовательское меню
+" Включение расширенного режима дополнения
 set wildmenu
-set wcm=<Tab>
-menu Exec.Python  :!python % <CR>
-menu Exec.Perl    :!perl % <CR>
-menu Exec.Ruby    :!ruby % <CR>
-menu Exec.bash      :!/bin/bash<CR>
-menu Exec.cmd     :!cmd % <CR>
-map <F9> :emenu Exec.<Tab>
 
 " F10 - Пользовательское меню
-set wildmenu
 set wcm=<Tab>
 menu Exit.quit     :quit<CR>
 menu Exit.quit!    :quit!<CR>
