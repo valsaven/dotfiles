@@ -1,26 +1,26 @@
 [user]
-	name  = Val Saven
+	name = Val Saven
 	email = val.saven@gmail.com
 [core]
 	editor = vim
-	pager  = diff-so-fancy | less --tabs=4 -RFX
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [alias]
 	### List all your Aliases ###
-	la  = "!git config -l | grep alias | cut -c 7-"
+	la = !git config -l | grep alias | cut -c 7-
 
 	### Logs ###
-	lg  = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	# Show the history of a file, with diffs
-	fl  = log -u
+	fl = log -u
 	# List oneline commits showing dates
-	lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+	lds = log --pretty=format:%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn] --decorate --date=short
 	# List commits showing changed files
-	ll  = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	ll = log --pretty=format:%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn] --decorate --numstat
 	# List commits in short form, with colors and branch/tag annotations
-	ls  = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	ls = log --pretty=format:%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn] --decorate
 
 	### Basic Shortcuts ###
-	a    = add -p            # Stage your git changes in patches
+	a = add -p # Stage your git changes in patches
 	b    = branch
 	ba   = branch -a         # List both remote-tracking branches and local branches.
 	bd   = branch -d         # Delete a branch only if it has been merged
@@ -33,7 +33,7 @@
 	dc   = diff --cached     # Display the staged changes
 	diff = diff --word-diff
 	f    = fetch -p          # Fetch from a repository and prune any remote-tracking references that no longer exist on the remote.
-	fi   = "!git ls-files | grep -i"  # Finding files and content inside files (grep)
+	fi = !git ls-files | grep -i # Finding files and content inside files (grep)
 	p    = push
 	pl   = pull
 	rank = shortlog -sn --no-merges   # Contributors ordered by number of merges
