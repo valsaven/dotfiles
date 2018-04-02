@@ -47,6 +47,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'mileszs/ack.vim'                         " Vim plugin for the Perl module / CLI script 'ack'
 Plug 'fatih/vim-go'                            " Go development plugin for Vim
 Plug 'ap/vim-css-color'                        " Highlight colors in css files
+Plug 'posva/vim-vue'                   " Syntax Highlight for Vue.js components
+" A Vim plugin for Prettier
+Plug 'prettier/vim-prettier', {        
+  \ 'do': 'npm install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 
 " Color Themes
 Plug 'blueshirts/darcula'              " VIM Darcula Theme
@@ -88,6 +93,14 @@ map <leader>r :NERDTreeFind<cr>
 
 " Default JavaScript libraries
 let g:used_javascript_libs = 'vue,jquery'
+" Disable checking for prepocessors
+let g:vue_disable_pre_processors=1
+" The command :Prettier by default is synchronous but can also be forced async
+let g:prettier#exec_cmd_async = 1
+" Running before saving async (vim 8+):
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+
 
 
 " "View"                Вид
