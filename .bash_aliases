@@ -9,6 +9,7 @@ alias gl='git pull'
 alias gp='git push'
 alias gs='git status'
 
+alias ls='ls --color=auto' 
 alias la='ls -a'
 
 # npm aliases
