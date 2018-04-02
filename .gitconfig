@@ -52,3 +52,7 @@
 	sa = stash apply
 	sl = stash list
 	ss = stash save
+[pull]
+	rebase = true
+[commit]
+	gpgsign = true
