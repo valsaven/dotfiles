@@ -1,6 +1,7 @@
 [user]
 	name = Val Saven
 	email = val.saven@gmail.com
+	signingkey = SIGNINGKEY
 [core]
 	editor = vim
 	pager = diff-so-fancy | less --tabs=4 -RFX
@@ -21,30 +22,30 @@
 
 	### Basic Shortcuts ###
 	a = add -p # Stage your git changes in patches
-	b    = branch
-	ba   = branch -a         # List both remote-tracking branches and local branches.
-	bd   = branch -d         # Delete a branch only if it has been merged
-	bD   = branch -D         # Force delete a branch
-	c    = commit            # Commit you changes
-	cl   = clone
-	co   = checkout          # Checkout a branch
-	cob  = checkout -b       # Checkout a new not yet existing branch
-	cp   = cherry-pick
-	dc   = diff --cached     # Display the staged changes
+	b = branch
+	ba = branch -a # List both remote-tracking branches and local branches.
+	bd = branch -d # Delete a branch only if it has been merged
+	bD = branch -D # Force delete a branch
+	c = commit # Commit you changes
+	cl = clone
+	co = checkout # Checkout a branch
+	cob = checkout -b # Checkout a new not yet existing branch
+	cp = cherry-pick
+	dc = diff --cached # Display the staged changes
 	diff = diff --word-diff
-	f    = fetch -p          # Fetch from a repository and prune any remote-tracking references that no longer exist on the remote.
+	f = fetch -p # Fetch from a repository and prune any remote-tracking references that no longer exist on the remote.
 	fi = !git ls-files | grep -i # Finding files and content inside files (grep)
-	p    = push
-	pl   = pull
-	rank = shortlog -sn --no-merges   # Contributors ordered by number of merges
-	s    = status -s
-	sb   = status -sb        # Status with branch
+	p = push
+	pl = pull
+	rank = shortlog -sn --no-merges # Contributors ordered by number of merges
+	s = status -s
+	sb = status -sb # Status with branch
 
 	### Reset Commands ###
-	r   = reset
-	r1  = reset HEAD^
-	r2  = reset HEAD^^
-	rh  = reset --hard
+	r = reset
+	r1 = reset HEAD^
+	r2 = reset HEAD^^
+	rh = reset --hard
 	rh1 = reset HEAD^ --hard
 	rh2 = reset HEAD^^ --hard
 
