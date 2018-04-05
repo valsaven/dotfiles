@@ -47,7 +47,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'mileszs/ack.vim'                         " Vim plugin for the Perl module / CLI script 'ack'
 Plug 'fatih/vim-go'                            " Go development plugin for Vim
 Plug 'ap/vim-css-color'                        " Highlight colors in css files
-Plug 'posva/vim-vue'                   " Syntax Highlight for Vue.js components
+Plug 'posva/vim-vue'                           " Syntax Highlight for Vue.js components
+Plug 'airblade/vim-gitgutter'                  " A Vim plugin which shows a git diff in the gutter
 " A Vim plugin for Prettier
 Plug 'prettier/vim-prettier', {        
   \ 'do': 'npm install',
