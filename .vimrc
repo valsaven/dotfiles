@@ -50,7 +50,7 @@ Plug 'ap/vim-css-color'                        " Highlight colors in css files
 Plug 'posva/vim-vue'                           " Syntax Highlight for Vue.js components
 Plug 'airblade/vim-gitgutter'                  " A Vim plugin which shows a git diff in the gutter
 " A Vim plugin for Prettier
-Plug 'prettier/vim-prettier', {        
+Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 
@@ -141,6 +141,10 @@ set showcmd
 
 " Показывать совпадающую скобку
 set showmatch
+
+" Показывать пробелы
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:.
+set list
 
 " Подсвечивать всё, что больше 100 символов
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
