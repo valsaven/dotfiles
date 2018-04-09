@@ -102,8 +102,6 @@ let g:prettier#exec_cmd_async = 1
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 
-
-
 " "View"                Вид
 " ===================================================================
 " Установка шрифта
@@ -146,6 +144,9 @@ set showmatch
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:.
 set list
 
+" Отключить подсветку активной строки
+set cul!
+
 " Подсвечивать всё, что больше 100 символов
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%101v.\+/
@@ -163,7 +164,6 @@ set smartindent     " Включить 'умные' отступы
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
-
 " "Search"                Поиск текста
 " ===================================================================
 " Подсвечивать поиск
@@ -177,7 +177,6 @@ set incsearch
 
 " Использовать регистронезависимый поиск
 set ignorecase
-
 
 " "Menu"                Горячие клавиши и меню
 " ===================================================================
