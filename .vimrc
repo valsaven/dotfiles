@@ -19,6 +19,9 @@ set lz
 " При копировании использовать системный буфер
 set clipboard=unnamedplus
 
+" Стратегия сохранения для нормальной работы Webpack HMR
+set backupcopy=yes
+
 " "Plugins"                Плагины и дополнения
 " ===================================================================
 filetype off  " Required
@@ -49,6 +52,8 @@ Plug 'fatih/vim-go'                            " Go development plugin for Vim
 Plug 'ap/vim-css-color'                        " Highlight colors in css files
 Plug 'posva/vim-vue'                           " Syntax Highlight for Vue.js components
 Plug 'airblade/vim-gitgutter'                  " A Vim plugin which shows a git diff in the gutter
+Plug 'tpope/vim-fugitive'                      " fugitive.vim: a Git wrapper so awesome, it should be illegal
+Plug 'ryanoasis/vim-devicons'                  " Adds file type glyphs/icons
 " A Vim plugin for Prettier
 Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
