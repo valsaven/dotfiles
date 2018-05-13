@@ -32,3 +32,4 @@ PERL_MB_OPT="--install_base \"/home/val/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/val/perl5"; export PERL_MM_OPT;
 export GPG_TTY=$(tty)
 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
