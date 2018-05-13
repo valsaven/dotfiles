@@ -36,10 +36,8 @@ Plug 'easymotion/vim-easymotion'               " Vim motions on speed
 Plug 'kien/ctrlp.vim'                          " Fuzzy file, buffer, mru, tag, etc finder
 Plug 'kshenoy/vim-signature'                   " Plugin to toggle, display and navigate marks
 Plug 'nathanaelkane/vim-indent-guides'         " Indent Guides is a plugin for visually displaying indent levels in Vim
-Plug 'othree/javascript-libraries-syntax.vim'  " Syntax for JavaScript libraries
 Plug 'scrooloose/nerdcommenter'                " Vim plugin for intensely orgasmic commenting
 Plug 'scrooloose/nerdtree'                     " A tree explorer plugin for Vim
-Plug 'sheerun/vim-polyglot'                    " A solid language pack for Vim
 Plug 'sjl/gundo.vim'                           " Visualize your Vim undo tree
 Plug 'tpope/vim-surround'                      " Surround.vim: quoting/parenthesizing made simple
 Plug 'xolox/vim-misc'                          " Miscellaneous auto-load Vim scripts
@@ -54,10 +52,6 @@ Plug 'posva/vim-vue'                           " Syntax Highlight for Vue.js com
 Plug 'airblade/vim-gitgutter'                  " A Vim plugin which shows a git diff in the gutter
 Plug 'tpope/vim-fugitive'                      " fugitive.vim: a Git wrapper so awesome, it should be illegal
 Plug 'ryanoasis/vim-devicons'                  " Adds file type glyphs/icons
-" A Vim plugin for Prettier
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'npm install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 
 " Color Themes
 Plug 'blueshirts/darcula'              " VIM Darcula Theme
@@ -97,15 +91,8 @@ autocmd WinEnter * call NERDTreeQuit()
 " View the current buffer in NERDTree
 map <leader>r :NERDTreeFind<cr>
 
-" Default JavaScript libraries
-let g:used_javascript_libs = 'vue,jquery'
 " Disable checking for prepocessors
 let g:vue_disable_pre_processors=1
-" The command :Prettier by default is synchronous but can also be forced async
-let g:prettier#exec_cmd_async = 1
-" Running before saving async (vim 8+):
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 
 " "View"                Вид
 " ===================================================================
