@@ -22,6 +22,10 @@ set clipboard=unnamedplus
 " Стратегия сохранения для нормальной работы Webpack HMR
 set backupcopy=yes
 
+" Отступы по вложенности
+set foldmethod=indent
+set foldlevel=99
+
 " "Plugins"                Плагины и дополнения
 " ===================================================================
 filetype off  " Required
@@ -164,7 +168,7 @@ set hls
 " Подсветка слов при поиске
 set nohlsearch
 
-" Использовать поиск по мене набора
+" Использовать поиск по мере набора
 set incsearch
 
 " Использовать регистронезависимый поиск
@@ -179,13 +183,27 @@ map <F2> <Esc>:w<CR>
 " F3 - Включение и отключение NERD Tree
 map <F3> :NERDTreeToggle<CR>
 
-" F5 - Переключение вкладок справа-налево
-imap <F5> <Esc> :bprev <CR>i
-map <F5> :bprev <CR>
+" F4 - Переключение вкладок справа-налево
+imap <F4> <Esc> :bprev <CR>i
+map <F4> :bprev <CR>
 
-" F6 - Переключение вкладок слева-направо
-imap <F6> <Esc> :bnext <CR>i
-map <F6> :bnext <CR>
+" F5 - Переключение вкладок слева-направо
+imap <F5> <Esc> :bnext <CR>i
+map <F5> :bnext <CR>
+
+" F6 - Переключение вкладок справа-налево
+imap <F6> <Esc> :lprev <CR>i
+map <F6> :lprev <CR>
+
+" F7 - Переключение вкладок слева-направо
+imap <F7> <Esc> :lnext <CR>i
+map <F7> :lnext <CR>
+
+" F8 - Переключение вложенностей
+inoremap <F8> <C-O>za
+nnoremap <F8> za
+onoremap <F8> <C-C>za
+vnoremap <F8> zf
 
 " Включение расширенного режима дополнения
 set wildmenu
