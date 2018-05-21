@@ -45,6 +45,7 @@ Plug 'scrooloose/nerdtree'                     " A tree explorer plugin for Vim
 Plug 'sjl/gundo.vim'                           " Visualize your Vim undo tree
 Plug 'tpope/vim-surround'                      " Surround.vim: quoting/parenthesizing made simple
 Plug 'xolox/vim-misc'                          " Miscellaneous auto-load Vim scripts
+Plug 'xolox/vim-session'                       " Extended session management for Vim (:mksession on steroids)
 Plug 'flowtype/vim-flow'                       " A vim plugin for Flow
 Plug 'mattn/emmet-vim'                         " emmet for vim
 Plug 'wakatime/vim-wakatime'                   " Vim plugin for Wakatime
@@ -151,6 +152,10 @@ set cul!
 " Подсвечивать всё, что больше 100 символов
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%101v.\+/
+
+" Отключение автосохранения и автозагрузки сессий
+let g:session_autosave = 'no'
+let g:session_autoload = 'no'
 
 " "Indent"                Отступы и табуляция
 " ===================================================================
