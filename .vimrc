@@ -4,6 +4,7 @@ set nocompatible      " Stops Vim from behaving in a strongly Vi-compatible way
 
 " Настроки для печати и отображения кириллицы
 set encoding=utf-8                      " set charset translation encoding
+let g:airline_powerline_fonts = 1
 set termencoding=utf-8                  " set terminal encoding
 set fileencodings=utf-8,koi8-r,cp1251   " Список предполагаемых кодировок, в порядке предпочтения
 
@@ -16,11 +17,17 @@ set backspace=indent,eol,start
 " Ленивая перерисовка экрана при выполнении скриптов
 set lz
 
-" При копировании использовать системный буфер
-set clipboard=unnamedplus
-
 " Стратегия сохранения для нормальной работы Webpack HMR
 set backupcopy=yes
+
+" При копировании использовать системный буфер
+if has("clipboard")
+  set clipboard=unnamed " copy to the system clipboard
+
+  if has("unnamedplus") " X11 support
+    set clipboard+=unnamedplus
+  endif
+endif
 
 " Отступы по вложенности
 set foldmethod=indent
@@ -57,11 +64,15 @@ Plug 'posva/vim-vue'                           " Syntax Highlight for Vue.js com
 Plug 'airblade/vim-gitgutter'                  " A Vim plugin which shows a git diff in the gutter
 Plug 'tpope/vim-fugitive'                      " fugitive.vim: a Git wrapper so awesome, it should be illegal
 Plug 'ryanoasis/vim-devicons'                  " Adds file type glyphs/icons
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'w0rp/ale'                                " Asynchronous Lint Engine 
+Plug 'vim-syntastic/syntastic'                 " Syntax checking hacks for vim
 
 " Color Themes
 Plug 'blueshirts/darcula'              " VIM Darcula Theme
 Plug 'juanedi/predawn.vim'             " Predawn theme for Vim
 Plug 'joshdick/onedark.vim'            " A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme
+Plug 'altercation/vim-colors-solarized'
 
 call plug#end()
 
@@ -96,8 +107,13 @@ autocmd WinEnter * call NERDTreeQuit()
 " View the current buffer in NERDTree
 map <leader>r :NERDTreeFind<cr>
 
+" Default JavaScript libraries
+"let g:used_javascript_libs = 'vue'
 " Disable checking for prepocessors
 let g:vue_disable_pre_processors=1
+
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.sass.scss.css
+
 
 " "View"                Вид
 " ===================================================================
@@ -160,8 +176,8 @@ let g:session_autoload = 'no'
 " "Indent"                Отступы и табуляция
 " ===================================================================
 set autoindent      " Наследовать отступы предыдущей строки
-set tabstop=4       " Количество пробелов, которыми символ табуляции отображается в тексте
-set shiftwidth=4    " Размер табуляции по умолчанию
+set tabstop=2       " Количество пробелов, которыми символ табуляции отображается в тексте
+set shiftwidth=2    " Размер табуляции по умолчанию
 set smarttab        " Нажатие Tab в начале строки приведет к добавлению отступа
 set expandtab       " Преобразовывать таб в пробелы
 set smartindent     " Включить 'умные' отступы
@@ -186,6 +202,10 @@ set ignorecase
 
 " "Menu"                Горячие клавиши и меню
 " ===================================================================
+" Ctrl + L - Refresh screen
+imap <C-L> <Esc>:redraw!<CR>
+map <C-L> <Esc>:redraw!<CR>
+
 " F2 - Сохранение изменений
 imap <F2> <Esc>:w<CR>
 map <F2> <Esc>:w<CR>
@@ -224,3 +244,7 @@ menu Exit.quit     :quit<CR>
 menu Exit.quit!    :quit!<CR>
 menu Exit.save     :exit<CR>
 map <F10> :emenu Exit.<Tab>
+
+" F12 - Fix syntax problems
+noremap <F12> <Esc>:syntax sync fromstart<CR>
+inoremap <F12> <C-o>:syntax sync fromstart<CR>

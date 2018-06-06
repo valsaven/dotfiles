@@ -1,4 +1,6 @@
 # General Aliases
+alias tres='tput reset'
+
 if ls --color -d . &> /dev/null
 then
   alias ls="ls --color=auto"
@@ -21,7 +23,13 @@ alias vbrc="vim ~/.bashrc"
 alias vbpf="vim ~/.bash_profile"
 
 # colored grep
-alias grep='grep --color=auto'
+# Need to check an existing file for a pattern that will be found to ensure
+# that the check works when on an OS that supports the color option
+if grep --color=auto "a" "${BASH_IT}/"*.md &> /dev/null
+then
+  alias grep='grep --color=auto'
+  export GREP_COLOR='1;33'
+fi
 
 alias c='clear'
 alias k='clear'
@@ -99,7 +107,9 @@ alias glum='git pull upstream master'
 alias gpr='git pull --rebase'
 alias gpp='git pull && git push'
 alias gup='git fetch && git rebase'
+alias gri='git rebase -i'
 alias gp='git push'
+alias gpf='git push --force'
 alias gpo='git push origin'
 alias gpu='git push --set-upstream'
 alias gpuo='git push --set-upstream origin'
@@ -132,6 +142,7 @@ alias gdel='git branch -D'
 alias gmu='git fetch origin -v; git fetch upstream -v; git merge upstream/master'
 alias gll='git log --graph --pretty=oneline --abbrev-commit'
 alias gg="git log --graph --pretty=format:'%C(bold)%h%Creset%C(magenta)%d%Creset %s %C(yellow)<%an> %C(cyan)(%cr)%Creset' --abbrev-commit --date=relative"
+alias gtt='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 alias ggs="gg --stat"
 alias gsl="git shortlog -sn"
 alias gwc="git whatchanged"
@@ -139,7 +150,6 @@ alias gt="git tag"
 alias gta="git tag -a"
 alias gtd="git tag -d"
 alias gtl="git tag -l"
-# From http://blogs.atlassian.com/2014/10/advanced-git-aliases/
 # Show commits since last pull
 alias gnew="git log HEAD@{1}..HEAD@{0}"
 # Add uncommitted and unstaged changes to the last commit
@@ -150,3 +160,7 @@ alias gstd="git stash drop"
 alias gstl="git stash list"
 alias gh='cd "$(git rev-parse --show-toplevel)"'
 alias gtls='git tag -l | sort -V'
+
+# Set git repo as Val's
+alias gsv='git config user.name "Val Saven" && git config user.email "val.saven@gmail.com" && git config commit.gpgsign true && echo "### CONFIG ###" && git config user.name && git config user.email && git config commit.gpgsign'
+
