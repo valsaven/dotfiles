@@ -3,3 +3,6 @@ text/html;  elinks -dump %s; nametemplate=%s.html; copiousoutput
 
 # Chrome
 text/html;  /usr/bin/google-chrome %s >/dev/null 2>&1; needsterminal
+
+# Plain text
+text/plain; vim %s
