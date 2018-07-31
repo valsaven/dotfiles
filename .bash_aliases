@@ -21,6 +21,16 @@ alias _="sudo"
 # Shortcuts to edit startup files
 alias vbrc="vim ~/.bashrc"
 alias vbpf="vim ~/.bash_profile"
+alias vvrc="vim ~/.vimrc"
+
+alias pacrepo='sudo reflector -l 20 -f 10 --save /etc/pacman.d/mirrorlist'
+alias pacman='sudo pacman'
+alias journalctl='sudo journalctl'
+alias pacu='sudo pacman -Syu --noconfirm'
+alias auru='yaourt -Syua --noconfirm'
+alias paclean='pacman -Rns $(pacman -Qtdq)'
+alias systemctl='sudo systemctl'
+alias se='ls /usr/bin | grep'
 
 # colored grep
 # Need to check an existing file for a pattern that will be found to ensure

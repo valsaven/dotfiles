@@ -61,12 +61,15 @@ Plug 'mileszs/ack.vim'                         " Vim plugin for the Perl module 
 Plug 'fatih/vim-go'                            " Go development plugin for Vim
 Plug 'ap/vim-css-color'                        " Highlight colors in css files
 Plug 'posva/vim-vue'                           " Syntax Highlight for Vue.js components
-Plug 'airblade/vim-gitgutter'                  " A Vim plugin which shows a git diff in the gutter
+Plug 'airblade/vim-gitgutter'                 " A Vim plugin which shows a git diff in the gutter
+Plug 'mhinz/vim-signify'                       " Show a diff using Vim its sign column.
 Plug 'tpope/vim-fugitive'                      " fugitive.vim: a Git wrapper so awesome, it should be illegal
 Plug 'ryanoasis/vim-devicons'                  " Adds file type glyphs/icons
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'w0rp/ale'                                " Asynchronous Lint Engine 
 Plug 'vim-syntastic/syntastic'                 " Syntax checking hacks for vim
+Plug 'neovimhaskell/haskell-vim'               " Custom Haskell Vimscripts
+Plug 'tpope/vim-eunuch'                        " eunuch.vim: helpers for UNIX
 
 " Color Themes
 Plug 'blueshirts/darcula'              " VIM Darcula Theme
@@ -123,6 +126,8 @@ set guifont=Consolas:h12:cRUSSIAN:qDRAFT
 " Автоматическая подсветка синтаксиса
 syntax enable
 
+filetype plugin indent on
+
 " Terminator pre-settings
 set t_Co=256
 set background=dark
@@ -147,11 +152,6 @@ set ruler
 " Подсветка текущей позиции курсора
 set cursorline
 
-" Изменить вид курсора для разных режимов
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
 " Отображение выполняемой команды
 set showcmd
 
@@ -159,7 +159,8 @@ set showcmd
 set showmatch
 
 " Показывать пробелы
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:.
+"set listchars=eol:¬,nbsp:☠,tab:>·,trail:~,extends:>,precedes:<,space:.
+set listchars=eol:¬,nbsp:☠,tab:>-,trail:~,extends:>,precedes:<
 set list
 
 " Отключить подсветку активной строки
@@ -185,6 +186,7 @@ set smartindent     " Включить 'умные' отступы
 " Подсветка отступов плагином по \ig
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " "Search"                Поиск текста
 " ===================================================================

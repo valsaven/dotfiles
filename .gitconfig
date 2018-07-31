@@ -2,6 +2,10 @@
 	name = Val Saven
 	email = val.saven@gmail.com
 	signingkey = SIGNINGKEY
+[gpg]
+	program = gpg2
+[merge]
+	tool = meld
 [core]
 	editor = vim
 	pager = diff-so-fancy | less --tabs=4 -RFX
