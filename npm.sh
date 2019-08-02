@@ -20,6 +20,7 @@ vtop
 diff-so-fancy
 gulp-cli
 heroku
+madge
 meta
 typescript
 webpack
@@ -41,9 +42,9 @@ stylelint
 stylelint-config-standard
 
 # Testing
-gemini
-html-reporter
-selenium-standalone
+#gemini
+#html-reporter
+#selenium-standalone
 )
 
 
@@ -52,6 +53,6 @@ do
   echo "Installing ${package}..."
   npm i -g "${package}"
 done
-selenium-standalone install
+#selenium-standalone install
 
 

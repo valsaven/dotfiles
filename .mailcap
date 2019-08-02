@@ -2,7 +2,9 @@
 #text/html;  elinks -dump %s; nametemplate=%s.html; copiousoutput
 
 # HTML
-text/html;  /usr/bin/google-chrome-stable %s >/dev/null 2>&1; needsterminal
+#text/html;  /usr/bin/google-chrome-stable %s >/dev/null 2>&1; needsterminal
 
 # Plain text
-text/plain; vim %s
+#text/plain; vim %s
+#
+text/html; w3m -I %{charset} -T text/html; copiousoutput;

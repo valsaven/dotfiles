@@ -32,6 +32,9 @@ fi
 
 export QT_STYLE_OVERRIDE=gtk
 export QT_SELECT=qt5
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 source ~/.cargo/env
 
