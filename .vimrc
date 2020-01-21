@@ -72,10 +72,7 @@ Plug 'neovimhaskell/haskell-vim'               " Custom Haskell Vimscripts
 Plug 'tpope/vim-eunuch'                        " eunuch.vim: helpers for UNIX
 
 " Color Themes
-Plug 'blueshirts/darcula'              " VIM Darcula Theme
-Plug 'juanedi/predawn.vim'             " Predawn theme for Vim
 Plug 'joshdick/onedark.vim'            " A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme
-Plug 'altercation/vim-colors-solarized'
 
 call plug#end()
 
@@ -121,7 +118,8 @@ autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.sass.scss
 " "View"                Вид
 " ===================================================================
 " Установка шрифта
-set guifont=Consolas:h12:cRUSSIAN:qDRAFT
+"set guifont=Consolas:h12:cRUSSIAN:qDRAFT
+set guifont=Fira\ Code:h12
 
 " Автоматическая подсветка синтаксиса
 syntax enable
@@ -204,6 +202,9 @@ set ignorecase
 
 " "Menu"                Горячие клавиши и меню
 " ===================================================================
+" Go to File... (Ctrl+P)
+map <c-p> :FZF<CR>
+
 " Ctrl + L - Refresh screen
 imap <C-L> <Esc>:redraw!<CR>
 map <C-L> <Esc>:redraw!<CR>
