@@ -32,15 +32,6 @@ alias paclean='pacman -Rns $(pacman -Qtdq)'
 alias systemctl='sudo systemctl'
 alias se='ls /usr/bin | grep'
 
-# colored grep
-# Need to check an existing file for a pattern that will be found to ensure
-# that the check works when on an OS that supports the color option
-if grep --color=auto "a" "${BASH_IT}/"*.md &> /dev/null
-then
-  alias grep='grep --color=auto'
-  export GREP_COLOR='1;33'
-fi
-
 alias c='clear'
 alias k='clear'
 alias cls='clear'
@@ -108,7 +99,6 @@ alias gm="git merge"
 alias gmv='git mv'
 alias g='git'
 alias get='git'
-alias gst='git status'
 alias gs='git status'
 alias gss='git status -s'
 alias gsu='git submodule update --init --recursive'
@@ -118,6 +108,7 @@ alias gpr='git pull --rebase'
 alias gpp='git pull && git push'
 alias gup='git fetch && git rebase'
 alias gri='git rebase -i'
+alias grim='git rebase -i master'
 alias gp='git push'
 alias gpf='git push --force'
 alias gpo='git push origin'

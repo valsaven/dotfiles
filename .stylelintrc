@@ -1,5 +1,5 @@
 {
-  "extends": "/home/val/.nvm/versions/node/v10.7.0/lib/node_modules/stylelint-config-standard",
+  "extends": "/home/val/.nvm/versions/node/v12.6.0/lib/node_modules/stylelint-config-standard",
   "rules": {
     "number-leading-zero": "never"
   }

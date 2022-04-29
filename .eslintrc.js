@@ -6,6 +6,12 @@ module.exports = {
     'airbnb-base',
     'plugin:vue/recommended'
   ],
+  globals: {
+    '_': true,
+    'axios': true,
+    'Vue': true,
+    'Vuex': true,
+  },
   rules: {
     'arrow-body-style': 'off',
     'consistent-return': 'off',
