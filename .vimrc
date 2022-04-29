@@ -42,7 +42,7 @@ call plug#begin('~/.vim/plugged')
 " Plugins list
 Plug 'Chiel92/vim-autoformat'                  " Provide easy code formatting in Vim by integrating existing code formatters.
 Plug 'ap/vim-buftabline'                       " Forget Vim tabs – now you can have buffer tabs
-Plug 'bling/vim-airline'                       " Lean & mean status/tabline for Vim that's light as air
+Plug 'vim-airline/vim-airline'                       " Lean & mean status/tabline for Vim that's light as air
 Plug 'easymotion/vim-easymotion'               " Vim motions on speed
 Plug 'kien/ctrlp.vim'                          " Fuzzy file, buffer, mru, tag, etc finder
 Plug 'kshenoy/vim-signature'                   " Plugin to toggle, display and navigate marks
@@ -55,10 +55,8 @@ Plug 'xolox/vim-misc'                          " Miscellaneous auto-load Vim scr
 Plug 'xolox/vim-session'                       " Extended session management for Vim (:mksession on steroids)
 Plug 'flowtype/vim-flow'                       " A vim plugin for Flow
 Plug 'mattn/emmet-vim'                         " emmet for vim
-Plug 'wakatime/vim-wakatime'                   " Vim plugin for Wakatime
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'mileszs/ack.vim'                         " Vim plugin for the Perl module / CLI script 'ack'
-Plug 'fatih/vim-go'                            " Go development plugin for Vim
 Plug 'ap/vim-css-color'                        " Highlight colors in css files
 Plug 'posva/vim-vue'                           " Syntax Highlight for Vue.js components
 Plug 'airblade/vim-gitgutter'                 " A Vim plugin which shows a git diff in the gutter
@@ -70,6 +68,7 @@ Plug 'w0rp/ale'                                " Asynchronous Lint Engine
 Plug 'vim-syntastic/syntastic'                 " Syntax checking hacks for vim
 Plug 'neovimhaskell/haskell-vim'               " Custom Haskell Vimscripts
 Plug 'tpope/vim-eunuch'                        " eunuch.vim: helpers for UNIX
+Plug 'lambdalisue/fern.vim'                    " Fern (furn) is a general purpose asynchronous tree viewer written in pure Vim script.
 
 " Color Themes
 Plug 'joshdick/onedark.vim'            " A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme
@@ -251,3 +250,4 @@ map <F10> :emenu Exit.<Tab>
 " F12 - Fix syntax problems
 noremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
+
