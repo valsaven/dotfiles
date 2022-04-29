@@ -1,8 +1,12 @@
+#!/bin/bash
+# deprecated
+
 packages=(
 # Npm utilies
 npm
 np
 npx
+npkill
 npm-check
 npm-check-updates
 npm-name-cli
@@ -17,25 +21,14 @@ tldr
 vtop
 
 # Other utilities
+depcheck
 diff-so-fancy
-gulp-cli
 heroku
 madge
 meta
 typescript
-webpack
-webpack-cli
-
-# Vue
-@vue/cli
-@vue/cli-init
-
-# Linting
-eslint
-babel-eslint
-eslint-config-airbnb-base
-eslint-plugin-import
-eslint-plugin-vue
+yalc
+yarn
 
 # CSS
 stylelint
