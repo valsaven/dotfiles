@@ -1,4 +1,8 @@
 # General Aliases
+function mkd() {
+  mkdir -p "$@" && cd "$@"\
+}
+
 alias tres='tput reset'
 
 if ls --color -d . &> /dev/null
