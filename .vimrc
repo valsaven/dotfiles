@@ -1,253 +1,202 @@
-" "Basic"                Базовые настройки
+" Commands to run after first setup:
+" :PlugInstall
+" :CocInstall coc-tsserver @yaegassy/coc-volar coc-css coc-html coc-json coc-eslint coc-prettier
+
+" ===================================================================
+" Basic Settings
 " ===================================================================
 set nocompatible      " Stops Vim from behaving in a strongly Vi-compatible way
+set encoding=utf-8              " Internal encoding
+set fileencodings=utf-8,koi8-r,cp1251 " Try these encodings when opening files
+set undolevels=1000             " Number of changes that can be undone
+set backspace=indent,eol,start  " Allow backspacing over everything in insert mode
+set lazyredraw                  " Don't redraw during macros for performance
+set backupcopy=yes              " Overwrite file instead of renaming (keeps file ID same for Vite/HMR)
 
-" Настроки для печати и отображения кириллицы
-set encoding=utf-8                      " set charset translation encoding
-let g:airline_powerline_fonts = 1
-set termencoding=utf-8                  " set terminal encoding
-set fileencodings=utf-8,koi8-r,cp1251   " Список предполагаемых кодировок, в порядке предпочтения
 
-" Максимальное количество изменений, которые могут быть отменены
-set undolevels=1000
-
-" Backspace работает в привычном режиме
-set backspace=indent,eol,start
-
-" Ленивая перерисовка экрана при выполнении скриптов
-set lz
-
-" Стратегия сохранения для нормальной работы Webpack HMR
-set backupcopy=yes
-
-" При копировании использовать системный буфер
+" Fix for modern terminal clipboard support
 if has("clipboard")
-  set clipboard=unnamed " copy to the system clipboard
-
-  if has("unnamedplus") " X11 support
-    set clipboard+=unnamedplus
+  set clipboard=unnamed       " Use system clipboard for all yank/delete/put operations
+  if has("unnamedplus")
+    set clipboard+=unnamedplus " Use '+' register for X11 clipboard support
   endif
 endif
 
-" Отступы по вложенности
-set foldmethod=indent
-set foldlevel=99
+" Folding logic
+set foldmethod=indent           " Fold based on indentation
+set foldlevel=99                " Open all folds by default
 
-" "Plugins"                Плагины и дополнения
 " ===================================================================
-filetype off  " Required
-
+" Plugins (vim-plug)
+" ===================================================================
 call plug#begin('~/.vim/plugged')
 
-" Plugins list
-Plug 'Chiel92/vim-autoformat'                  " Provide easy code formatting in Vim by integrating existing code formatters.
-Plug 'ap/vim-buftabline'                       " Forget Vim tabs – now you can have buffer tabs
-Plug 'vim-airline/vim-airline'                       " Lean & mean status/tabline for Vim that's light as air
-Plug 'easymotion/vim-easymotion'               " Vim motions on speed
-Plug 'kien/ctrlp.vim'                          " Fuzzy file, buffer, mru, tag, etc finder
-Plug 'kshenoy/vim-signature'                   " Plugin to toggle, display and navigate marks
-Plug 'nathanaelkane/vim-indent-guides'         " Indent Guides is a plugin for visually displaying indent levels in Vim
-Plug 'scrooloose/nerdcommenter'                " Vim plugin for intensely orgasmic commenting
-Plug 'scrooloose/nerdtree'                     " A tree explorer plugin for Vim
-Plug 'sjl/gundo.vim'                           " Visualize your Vim undo tree
-Plug 'tpope/vim-surround'                      " Surround.vim: quoting/parenthesizing made simple
-Plug 'xolox/vim-misc'                          " Miscellaneous auto-load Vim scripts
-Plug 'xolox/vim-session'                       " Extended session management for Vim (:mksession on steroids)
-Plug 'flowtype/vim-flow'                       " A vim plugin for Flow
-Plug 'mattn/emmet-vim'                         " emmet for vim
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'mileszs/ack.vim'                         " Vim plugin for the Perl module / CLI script 'ack'
-Plug 'ap/vim-css-color'                        " Highlight colors in css files
-Plug 'posva/vim-vue'                           " Syntax Highlight for Vue.js components
-Plug 'airblade/vim-gitgutter'                 " A Vim plugin which shows a git diff in the gutter
-Plug 'mhinz/vim-signify'                       " Show a diff using Vim its sign column.
-Plug 'tpope/vim-fugitive'                      " fugitive.vim: a Git wrapper so awesome, it should be illegal
-Plug 'ryanoasis/vim-devicons'                  " Adds file type glyphs/icons
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'w0rp/ale'                                " Asynchronous Lint Engine
-Plug 'vim-syntastic/syntastic'                 " Syntax checking hacks for vim
-Plug 'neovimhaskell/haskell-vim'               " Custom Haskell Vimscripts
-Plug 'tpope/vim-eunuch'                        " eunuch.vim: helpers for UNIX
-Plug 'lambdalisue/fern.vim'                    " Fern (furn) is a general purpose asynchronous tree viewer written in pure Vim script.
+" Core & UI
+Plug 'joshdick/onedark.vim'        " A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme
+Plug 'vim-airline/vim-airline'     " Lean & mean status/tabline for Vim that's light as air
+Plug 'ryanoasis/vim-devicons'      " Adds file type glyphs/icons
 
-" Color Themes
-Plug 'joshdick/onedark.vim'            " A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme
+" Navigation
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy finder installation
+Plug 'junegunn/fzf.vim'                             " FZF integration for Vim
+Plug 'easymotion/vim-easymotion'                    " Vim motions on speed
+
+" Fern File Tree
+Plug 'lambdalisue/fern.vim'                         " General purpose asynchronous tree viewer
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'       " Better icons for Fern
+
+" Coding Support (LSP & Language)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}     " Modern IntelliSense & Language Server Protocol
+Plug 'tpope/vim-surround'                           " Quoting/parenthesizing made simple
+Plug 'tpope/vim-commentary'                         " Comment stuff out with 'gcc' or 'gc'
+Plug 'mattn/emmet-vim'                              " Emmet for fast HTML/CSS coding
+Plug 'ap/vim-css-color'                             " Highlight colors in CSS/SCSS files
+
+" Git
+Plug 'tpope/vim-fugitive'          " A Git wrapper so awesome, it should be illegal
+Plug 'airblade/vim-gitgutter'      " Shows a git diff in the gutter (sign column)
 
 call plug#end()
 
-" Показать скрытые файлы в NERD Tree
-let NERDTreeShowHidden=1
-
-" Скрипт для закрытия NERD Tree при закрытии последнего файла
-function! NERDTreeQuit()
-  redir => buffersoutput
-  silent buffers
-  redir END
-  let pattern = '^\s*\(\d\+\)\(.....\) "\(.*\)"\s\+line \(\d\+\)$'
-  let windowfound = 0
-
-  for bline in split(buffersoutput, "\n")
-    let m = matchlist(bline, pattern)
-
-    if (len(m) > 0)
-      if (m[2] =~ '..a..')
-        let windowfound = 1
-      endif
-    endif
-  endfor
-
-  if (!windowfound)
-    quitall
-  endif
-endfunction
-
-autocmd WinEnter * call NERDTreeQuit()
-
-" View the current buffer in NERDTree
-map <leader>r :NERDTreeFind<cr>
-
-" Default JavaScript libraries
-"let g:used_javascript_libs = 'vue'
-" Disable checking for prepocessors
-let g:vue_disable_pre_processors=1
-
-autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.sass.scss.css
-
-
-" "View"                Вид
 " ===================================================================
-" Установка шрифта
-"set guifont=Consolas:h12:cRUSSIAN:qDRAFT
-set guifont=Fira\ Code:h12
+" View & UI
+" ===================================================================
+syntax enable                 " Enable syntax highlighting
+filetype plugin indent on     " Enable detection, plugins and indenting for filetypes
 
-" Автоматическая подсветка синтаксиса
-syntax enable
+"set guifont=Consolas:h12:cRUSSIAN:qDRAFT   " Set font for GUI (GVim)
+set guifont=Fira\ Code:h12    " Set font for GUI (GVim)
+set t_Co=256                  " Tell Vim the terminal supports 256 colors
+set background=dark           " Tell Vim we are using a dark background
+colorscheme onedark           " Load the One Dark color scheme
 
-filetype plugin indent on
+set number                    " Show line numbers
+set numberwidth=4             " Set width of the line number column
+set ruler                     " Always show cursor position (line, col)
+set cursorline                " Highlight the current line for better visibility
+set showcmd                   " Display incomplete commands in the status line
+set showmatch                 " Briefly jump to matching brackets when typed
+set wildmenu                  " Enhanced command-line completion
+set mouse=a                   " Enable mouse support in all modes
 
-" Terminator pre-settings
-set t_Co=256
-set background=dark
+set nocursorline " DISABLE highlight the current line
 
-" Set color scheme
-colorscheme onedark
-
-" Enables HTML/CSS syntax highlighting in your JavaScript file.
-let g:javascript_enable_domhtmlcss = 1
-
-" Отображение номеров строк
-set number
-set numberwidth=4
-
-" Показываем табы в начале строки точками
-set listchars=tab:··
-set list
-
-" Отображения позиции курсора (всё время)
-set ruler
-
-" Подсветка текущей позиции курсора
-set cursorline
-
-" Отображение выполняемой команды
-set showcmd
-
-" Показывать совпадающую скобку
-set showmatch
-
-" Показывать пробелы
-"set listchars=eol:¬,nbsp:☠,tab:>·,trail:~,extends:>,precedes:<,space:.
+" Whitespace visualization
 set listchars=eol:¬,nbsp:☠,tab:>-,trail:~,extends:>,precedes:<
 set list
 
-" Отключить подсветку активной строки
-set cul!
-
-" Подсвечивать всё, что больше 100 символов
+" Highlight lines longer than 100 characters
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%101v.\+/
 
-" Отключение автосохранения и автозагрузки сессий
-let g:session_autosave = 'no'
-let g:session_autoload = 'no'
-
-" "Indent"                Отступы и табуляция
 " ===================================================================
-set autoindent      " Наследовать отступы предыдущей строки
-set tabstop=2       " Количество пробелов, которыми символ табуляции отображается в тексте
-set shiftwidth=2    " Размер табуляции по умолчанию
-set smarttab        " Нажатие Tab в начале строки приведет к добавлению отступа
-set expandtab       " Преобразовывать таб в пробелы
-set smartindent     " Включить 'умные' отступы
-
-" Подсветка отступов плагином по \ig
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
-" "Search"                Поиск текста
+" Indentation
 " ===================================================================
-" Подсвечивать поиск
-set hls
+set autoindent       " Copy indent from current line when starting a new one
+set tabstop=2        " Number of spaces that a <Tab> counts for
+set shiftwidth=2     " Number of spaces to use for each step of (auto)indent
+set smarttab         " Use shiftwidth for <Tab> at start of line
+set expandtab        " Convert all typed tabs into spaces
+set smartindent      " Automatically insert extra indent in some cases (e.g., after '{')
 
-" Подсветка слов при поиске
-set nohlsearch
-
-" Использовать поиск по мере набора
-set incsearch
-
-" Использовать регистронезависимый поиск
-set ignorecase
-
-" "Menu"                Горячие клавиши и меню
 " ===================================================================
-" Go to File... (Ctrl+P)
-map <c-p> :FZF<CR>
+" Search
+" ===================================================================
+set hls              " Highlight all search matches
+set nohlsearch       " Clear highlight after finishing search
+set incsearch        " Start searching as soon as characters are typed
+set ignorecase       " Ignore case in search patterns
+set smartcase        " Override the 'ignorecase' option if the search pattern contains upper case characters.
 
-" Ctrl + L - Refresh screen
-imap <C-L> <Esc>:redraw!<CR>
-map <C-L> <Esc>:redraw!<CR>
+" ===================================================================
+" Keybindings
+" ===================================================================
+" F2 - Save changes
+nnoremap <F2> :w<CR>
+inoremap <F2> <Esc>:w<CR>
 
-" F2 - Сохранение изменений
-imap <F2> <Esc>:w<CR>
-map <F2> <Esc>:w<CR>
+" F3 - Toggle Fern file tree (revealing current file)
+nnoremap <silent> <F3> :Fern . -drawer -toggle -reveal=% -width=35<CR>
 
-" F3 - Включение и отключение NERD Tree
-map <F3> :NERDTreeToggle<CR>
+" F4 - Previous buffer
+nnoremap <F4> :bprevious<CR>
+inoremap <F4> <Esc>:bprevious<CR>i
 
-" F4 - Переключение вкладок справа-налево
-imap <F4> <Esc> :bprev <CR>i
-map <F4> :bprev <CR>
+" F5 - Next buffer
+nnoremap <F5> :bnext<CR>
+inoremap <F5> <Esc>:bnext<CR>i
 
-" F5 - Переключение вкладок слева-направо
-imap <F5> <Esc> :bnext <CR>i
-map <F5> :bnext <CR>
-
-" F6 - Переключение вкладок справа-налево
-imap <F6> <Esc> :lprev <CR>i
-map <F6> :lprev <CR>
-
-" F7 - Переключение вкладок слева-направо
-imap <F7> <Esc> :lnext <CR>i
-map <F7> :lnext <CR>
-
-" F8 - Переключение вложенностей
-inoremap <F8> <C-O>za
+" F8 - Folding
 nnoremap <F8> za
-onoremap <F8> <C-C>za
+inoremap <F8> <C-O>za
 vnoremap <F8> zf
 
-" Включение расширенного режима дополнения
-set wildmenu
-
-" F10 - Пользовательское меню
+" F10 - Simple menu (Exit/Save)
 set wcm=<Tab>
-menu Exit.quit     :quit<CR>
-menu Exit.quit!    :quit!<CR>
-menu Exit.save     :exit<CR>
-map <F10> :emenu Exit.<Tab>
+menu Exit.quit :quit<CR>
+menu Exit.quit! :quit!<CR>
+menu Exit.save :exit<CR>
+nnoremap <F10> :emenu Exit.<Tab>
 
 " F12 - Fix syntax problems
-noremap <F12> <Esc>:syntax sync fromstart<CR>
+nnoremap <F12> :syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
+" Ctrl+P - Fuzzy find files (via FZF)
+nnoremap <C-p> :FZF<CR>
+
+" Ctrl+L - Refresh screen and clear search highlight
+nnoremap <C-L> :noh<CR><C-L>
+inoremap <C-L> <Esc>:noh<CR><C-L>i
+
+" ===================================================================
+" Plugin Specific Config
+" ===================================================================
+
+" Airline (buffers as tabs)
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+" Fern
+let g:fern#renderer = "nerdfont"     " Use nerdfont for file icons
+let g:fern#default_hidden = 1        " Show hidden files by default
+
+" coc.nvim (LSP for Vue/JS/SCSS) Core Settings
+set hidden            " Required for operations on multiple buffers
+set nobackup          " Recommended by CoC for better performance
+set nowritebackup
+set updatetime=300    " Faster diagnostic messages
+set signcolumn=yes    " Always show the signcolumn (gutter)
+
+" CoC Tab Completion
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" CoC Enter to confirm
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" LSP Navigation Mappings
+nmap <silent> gd <Plug>(coc-definition)                 " Go to definition
+nmap <silent> gy <Plug>(coc-type-definition)            " Go to type definition
+nmap <silent> gi <Plug>(coc-implementation)             " Go to implementation
+nmap <silent> gr <Plug>(coc-references)                 " Find references
+nnoremap <silent> K :call CocActionAsync('doHover')<CR> " Show documentation in preview window
+
+" LSP Diagnostics navigation
+nmap <silent> [g <Plug>(coc-diagnostic-prev)  " Go to previous error/warning
+nmap <silent> ]g <Plug>(coc-diagnostic-next)  " Go to next error/warning
+
+" LSP Code Actions (Rename & Format)
+nmap <leader>rn <Plug>(coc-rename)            " Symbol renaming
+xmap <leader>f  <Plug>(coc-format-selected)   " Format selected code
+nmap <leader>f  <Plug>(coc-format-selected)   " Format current buffer/selection
