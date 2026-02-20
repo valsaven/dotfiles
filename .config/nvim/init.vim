@@ -1,7 +1,7 @@
 " "Basic"                Базовые настройки
 " ===================================================================
 
-" Настроки для печати и отображения кириллицы
+" Настройки для печати и отображения кириллицы
 set encoding=utf-8                      " set charset translation encoding
 set termencoding=utf-8                  " set terminal encoding
 set fileencodings=utf-8,koi8-r,cp1251   " Список предполагаемых кодировок, в порядке предпочтения
@@ -47,7 +47,7 @@ Plug 'mileszs/ack.vim'                         " Vim plugin for the Perl module 
 Plug 'fatih/vim-go'                            " Go development plugin for Vim
 
 " Color Themes
-Plug 'joshdick/onedark.vim'                    " A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme. 
+Plug 'joshdick/onedark.vim'                    " A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme.
 
 call plug#end()
 

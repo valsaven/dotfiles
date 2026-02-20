@@ -64,7 +64,7 @@ Plug 'mhinz/vim-signify'                       " Show a diff using Vim its sign 
 Plug 'tpope/vim-fugitive'                      " fugitive.vim: a Git wrapper so awesome, it should be illegal
 Plug 'ryanoasis/vim-devicons'                  " Adds file type glyphs/icons
 Plug 'cakebaker/scss-syntax.vim'
-Plug 'w0rp/ale'                                " Asynchronous Lint Engine 
+Plug 'w0rp/ale'                                " Asynchronous Lint Engine
 Plug 'vim-syntastic/syntastic'                 " Syntax checking hacks for vim
 Plug 'neovimhaskell/haskell-vim'               " Custom Haskell Vimscripts
 Plug 'tpope/vim-eunuch'                        " eunuch.vim: helpers for UNIX
